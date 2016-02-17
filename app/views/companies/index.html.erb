@@ -1,0 +1,10 @@
+<h1> All Companies </h1>
+
+<% @companies.each do |company| %>
+  
+<h4><%= company['name']%></h4>
+<h4><%= company['address'] %></h4>
+<h4><%= company['commerce'] %></h4>
+
+<% end %>
+
