@@ -10,7 +10,7 @@ class CompaniesController < ApplicationController
 
 
   def create               
-    @company = Unirest.post("http://localhost:3000/companies/#{params[:id]}", 
+    @company = Unirest.post("#{ENV['API_BASE_URL']}/companies/#{params[:id]}", 
       parameters:{ name: params[:name], address: params[:address], commerce: params[:commerce]}).body 
   
     render :show 
@@ -25,7 +25,7 @@ class CompaniesController < ApplicationController
   end 
 
   def update
-    @company = Unirest.patch("http://localhost:3000/companies/#{params[:id]}" , 
+    @company = Unirest.patch("#{ENV['API_BASE_URL']}/companies/#{params[:id]}" , 
       parameters:{ name: params[:name ], address: params[:address], commerce: params[:commerce]}).body
   end
 

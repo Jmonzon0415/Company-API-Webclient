@@ -12,11 +12,11 @@ class Company
   end 
 
   def self.find(id)
-     Company.new(Unirest.get("http://localhost:3000/companies/#{id}").body)
+     Company.new(Unirest.get("#{ENV['API_BASE_URL']}/companies/#{id}").body)
   end 
 
   def self.all 
-    api_companies_array = Unirest.get("http://localhost:3001/companies").body
+    api_companies_array = Unirest.get("#{ENV['API_BASE_URL']}/companies").body
     companies = []
     api_companies_array.each {|api_company| @companies << Company.new(api_company) }
     companies
@@ -24,7 +24,7 @@ class Company
   end 
 
   def destroy
-   Unirest.delete("http://localhost:3000/companies/#{id}", headers:{"Accept" => "application/json "}, parameters:{ name: params[:name], address: params[:address], commerce: params[:commerce]}).body
+   Unirest.delete("#{ENV['API_BASE_URL']}/companies/#{id}", headers:{"Accept" => "application/json "}, parameters:{ name: params[:name], address: params[:address], commerce: params[:commerce]}).body
   end 
 
 
